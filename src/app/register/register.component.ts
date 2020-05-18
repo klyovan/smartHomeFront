@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   loginControl = new FormControl('', Validators.required);
   passwordControl = new FormControl('', [Validators.minLength(6), Validators.required]);
   emailControl = new FormControl('', [Validators.email, Validators.required]);
+  matcher = new MyErrorStateMatcher();
 
 
   constructor(private authService: AuthService, private router: Router) {
