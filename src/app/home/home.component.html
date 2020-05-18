@@ -1,5 +1,11 @@
 <div class="container">
   <header class="jumbotron">
-    <p>{{ content }}</p>
+    <h1 style="text-align: center">{{ content }}</h1>
   </header>
 </div>
+
+<mat-card>
+<div *ngIf="token.getToken()">
+  <button mat-button routerLink="/control-panel" color="warn">Go to control panel</button>
+</div>
+</mat-card>

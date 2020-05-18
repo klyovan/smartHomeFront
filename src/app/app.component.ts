@@ -16,14 +16,14 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
+    // this.isLoggedIn = !!this.tokenStorageService.getToken();
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
+    console.log(this.isLoggedIn + "logeasd");
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }

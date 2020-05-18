@@ -13,10 +13,15 @@ import { HomeComponent } from './home/home.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { AngularMaterialModule } from './angular-material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import { ReportsComponent } from './reports/reports.component';
+import { ChartsModule } from 'ng2-charts';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BoardAdminComponent,
     ProfileComponent,
     BoardUserComponent,
-    BoardModeratorComponent
+    ReportsComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +42,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     AngularMaterialModule,
-    FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    ChartsModule,
+    MatSlideToggleModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

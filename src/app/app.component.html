@@ -1,47 +1,15 @@
 <div id="app">
-  <!--<nav class="navbar navbar-expand navbar-dark bg-dark">-->
-    <!--<a href="#" class="navbar-brand">bezKoder</a>-->
-    <!--<ul class="navbar-nav mr-auto" routerLinkActive="active">-->
-      <!--<li class="nav-item">-->
-        <!--<a href="/home" class="nav-link" routerLink="home">Home </a>-->
-      <!--</li>-->
-      <!--<li class="nav-item" *ngIf="showAdminBoard">-->
-        <!--<a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item" *ngIf="showModeratorBoard">-->
-        <!--<a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>-->
-      <!--</li>-->
-    <!--</ul>-->
-
-    <!--<ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">-->
-      <!--<li class="nav-item">-->
-        <!--<a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a href="/login" class="nav-link" routerLink="login">Login</a>-->
-      <!--</li>-->
-    <!--</ul>-->
-
-    <!--<ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">-->
-      <!--<li class="nav-item">-->
-        <!--<a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a href class="nav-link" (click)="logout()">LogOut</a>-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</nav>-->
-
   <!-- Toolbar -->
-  <mat-toolbar color="primary" class="app-header">
-    <div><a href="https://www.positronx.io" target="_blank" class="positronx">PositronX.io</a></div>
-    <span class="nav-tool-items">
-    <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-    <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+  <mat-toolbar color="primary" class="app-header ">
+
+    <a  routerLink="home"  class="positronx col-9">HomeX</a>
+    <span *ngIf="!isLoggedIn"   class="nav-tool-items col-1">
+    <a  mat-button routerLink="login"  routerLinkActive="active">Log in</a>
+    <a mat-button mat-raised-button routerLink="register" style="color: black" routerLinkActive="active">Register</a>
   </span>
+    <span *ngIf="isLoggedIn"   class="nav-tool-items col-1">
+      <a mat-button (click)="logout()"  routerLinkActive="active">Log out</a>
+    </span>
   </mat-toolbar>
 
   <div class="container">
