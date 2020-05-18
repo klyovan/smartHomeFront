@@ -5,7 +5,7 @@
 </div>
 
 <mat-card>
-<div *ngIf="token.getToken()">
+<div *ngIf="isLoggedIn">
   <button mat-button routerLink="/control-panel" color="warn">Go to control panel</button>
 </div>
 </mat-card>
