@@ -1,0 +1,18 @@
+<button mat-icon-button color="primary" id="fixedbutton"   (click)="backClicked()" ><mat-icon>arrow_back</mat-icon></button>
+<div class="container">
+  <div class="row">
+    <mat-card *ngFor="let room of  rooms" style="margin: 5px" class="col-xl-3">
+      <mat-card-header class="container-fluid">
+        <h3 class="col-xl-10">{{room.name}}</h3><button (click)="deleteRoom(room.name,room.id)" mat-icon-button class="col-xl-2" color="warn"> <mat-icon>cancel</mat-icon></button>
+      </mat-card-header>
+
+      <img width="312" height="312" mat-card-image src="{{room.link}}" alt="">
+      <div class="container-fluid">
+      <button style="width: 100%"  routerLink="/room/{{room.id}}" mat-raised-button color="primary" >Check</button>
+      </div>
+    </mat-card>
+  </div>
+  <button *ngIf="authService.isAdmin"  mat-fab (click)=createRoom()  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

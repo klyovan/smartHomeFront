@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Are you sure you want to delete?</h1>
+<hr>
+<div mat-dialog-content>
+  <h3>{{data.text}}</h3>
+  <mat-hint style="color: red;">This action can't be undone.</mat-hint>
+</div>
+<div class="row justify-content-end" mat-dialog-actions>
+  <button color="warn" mat-flat-button (click)="onNoClick()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button color="accent"  mat-flat-button (click)="onYesClick()">
+    <mat-icon>check</mat-icon>
+  </button>
+</div>

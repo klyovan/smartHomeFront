@@ -1,37 +1,123 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {IMqttMessage, MqttService} from 'ngx-mqtt';
+import {Subscription} from 'rxjs';
+import {ChartDataSets, ChartOptions} from 'chart.js';
+import {Color, Label} from 'ng2-charts';
+import {Location} from '@angular/common';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css']
 })
-export class ReportsComponent implements OnInit {
+export class ReportsComponent implements OnInit, OnDestroy {
 
-  constructor() {
+
+  constructor(private _mqttService: MqttService, private _location: Location, authService: AuthService) {
+    this.tempSubscription = this._mqttService.observe('klyovan/smarthome/room1/temp').subscribe((message: IMqttMessage) => {
+      this.temperature.push(message.payload.toString());
+      this.today = new Date();
+      this.h = this.today.getHours();
+      this.m = this.today.getMinutes();
+      this.s = this.today.getSeconds();
+      this.m = ReportsComponent.checkTime(this.m);
+      this.s = ReportsComponent.checkTime(this.s);
+
+      this.dates.push(this.h + ':' + this.m + ':' + this.s);
+      console.log(this.temperature);
+      if (this.temperature.length > 105) {
+        this.temperature = [];
+        this.dates = [];
+        this.lineChartLabels = this.dates;
+        this.tempLineChartData = [
+          {data: this.temperature}
+        ];
+      }
+    });
+    this.humSubscription = this._mqttService.observe('klyovan/smarthome/room1/humidity').subscribe((message: IMqttMessage) => {
+      this.humidity.push(message.payload.toString());
+      if (this.humidity.length > 105) {
+        this.humidity = [];
+        this.dates = [];
+        this.lineChartLabels = this.dates;
+        this.humLineChartData = [
+          {data: this.humidity}
+        ];
+
+      }
+      console.log(this.humidity);
+    });
   }
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
+
+  private tempSubscription: Subscription;
+  private humSubscription: Subscription;
+  public temperature = [];
+  public humidity = [];
+  public dates = [];
+  public today: Date;
+  h: number;
+  m: number;
+  s: number;
+
+  public tempLineChartData: ChartDataSets[] = [
+    {data: this.temperature}
+  ];
+
+  public humLineChartData: ChartDataSets[] = [
+    {data: this.humidity}
+  ];
+
+  public lineChartLabels: Label[] = this.dates;
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    annotation: {
+      annotations: [],
+    },
   };
-
-  public barChartLabels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData = [
-    {data: [30, 25, 26, 25, 25, 27, 30], label: 'Max Humidity'},
-    {data: [28, 24, 23, 24, 24, 21, 28], label: 'Min Humidity'}
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#fafafa',
+      backgroundColor: this.getRandomColor(),
+    },
   ];
 
-  public barChartLabels1 = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  public barChartType1 = 'bar';
-  public barChartLegend1 = true;
-  public barChartData1 = [
-    {data: [31, 26, 27, 26, 26, 28, 29], label: 'Max Temperature'},
-    {data: [27, 23, 22, 23, 23, 22, 25], label: 'Min Temperature'}
-  ];
+  public lineChartLegend = false;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
+
+  public static checkTime(i) {
+    if (i < 10) {
+      i = '0' + i;
+    }
+    return i;
+  }
+
+  backClicked() {
+    this._location.back();
+  }
+
+   getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
 
   ngOnInit() {
+
   }
 
+  public unsafePublish(topic: string, message: string): void {
+    this._mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
+  }
+
+  public ngOnDestroy() {
+    this.tempSubscription.unsubscribe();
+    this.humSubscription.unsubscribe();
+  }
 }

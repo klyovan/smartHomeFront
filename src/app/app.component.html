@@ -1,18 +1,20 @@
 <div id="app">
   <!-- Toolbar -->
-  <mat-toolbar color="primary" class="app-header ">
+  <mat-toolbar  color="primary" class="app-header container-fluid">
 
-    <a  routerLink="home"  class="positronx col-9">HomeX</a>
-    <span *ngIf="!isLoggedIn"   class="nav-tool-items col-1">
-    <a  mat-button routerLink="login"  routerLinkActive="active">Log in</a>
-    <a mat-button mat-raised-button routerLink="register" style="color: black" routerLinkActive="active">Register</a>
-  </span>
-    <span *ngIf="isLoggedIn"   class="nav-tool-items col-1">
-      <a mat-button (click)="logout()"  routerLinkActive="active">Log out</a>
+    <a  routerLink="home"  class="positronx  col-sm-6 col-xl-10 col-md-10">HomeX</a>
+    <span *ngIf="authService.isLogged || isLoggedIn; else noLogin"   class="nav-tool-items col-xl-2 col-sm-6 col-md-2">
+      <a mat-button (click)="logout()"  routerLinkActive="active">Log out <mat-icon>input</mat-icon></a>
+          <a *ngIf="authService.isAdmin" mat-button mat-raised-button routerLink="register" style="color: black" routerLinkActive="active">Register</a>
     </span>
-  </mat-toolbar>
+    <ng-template #noLogin>
+    <span    class="nav-tool-items  col-sm-6 col-xl-2 col-md-2">
+    <a  mat-button routerLink="login"  routerLinkActive="active">Log in</a>
+  </span>
+    </ng-template>
 
-  <div class="container">
+  </mat-toolbar>
+  <div class="container-fluid" >
     <router-outlet></router-outlet>
   </div>
 </div>

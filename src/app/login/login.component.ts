@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   isSubmited = false;
   matcher = new MyErrorStateMatcher();
   isRegister: string;
+  spinner = false;
 
   // error: string;
 
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner = true;
     this.authService.login(this.form).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -65,6 +67,7 @@ export class LoginComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.spinner = false;
         // this.onFailed();
       }
     );
@@ -75,7 +78,9 @@ export class LoginComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.router.navigate(['control-panel']);
+    this.spinner = false;
+    this.router.navigate(['room']);
+    this.authService.isLogged = true;
   }
 
 }

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../service/user.service';
 import {TokenStorageService} from '../service/token-storage.service';
 
 @Component({
@@ -10,8 +9,12 @@ import {TokenStorageService} from '../service/token-storage.service';
 export class HomeComponent implements OnInit {
   content: string;
   isLoggedIn = false;
+  componentName: string;
 
-  constructor(private userService: UserService, private tokenStorageService: TokenStorageService) {
+
+  constructor(private tokenStorageService: TokenStorageService) {
+    this.componentName =  window.location.pathname.toString();
+
   }
 
   ngOnInit() {

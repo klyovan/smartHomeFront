@@ -1,11 +1,13 @@
-<div class="container">
-  <header class="jumbotron">
+<div class="container-fluid">
     <h1 style="text-align: center">{{ content }}</h1>
-  </header>
+  <div style="text-align: center">
+    <img mat-card-image width="500px" height="500px" src="https://image.flaticon.com/icons/svg/2910/2910678.svg" alt="">
+  </div>
+  <!--<h3 style="text-align: center">About</h3>-->
+  <!--<span >HomeX is Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>-->
 </div>
 
-<mat-card>
-<div *ngIf="isLoggedIn">
-  <button mat-button routerLink="/control-panel" color="warn">Go to control panel</button>
+<div style="text-align: center; margin-top: 5px" *ngIf="isLoggedIn">
+  <button  mat-raised-button routerLink="/room" color="primary">Go to control panel</button>
 </div>
-</mat-card>
+

@@ -1,11 +1,32 @@
-<mat-card>
-  <mat-card-header>
-    <h3>Jalousie</h3>
-  </mat-card-header>
-  <mat-slide-toggle>toggle jalousie</mat-slide-toggle>
-</mat-card>
+<button mat-icon-button color="primary" id="fixedbutton"   (click)="backClicked()" ><mat-icon>arrow_back</mat-icon></button>
 
-<mat-card style="margin-top: 5px">
-  <mat-card-header><h3>Reports</h3></mat-card-header>
-  <button routerLink="/reports" mat-button color="accent">Check reports</button>
+<div  class="container">
+  <div class="row">
+  <div *ngIf="sensors != null; else addSensor" class="col-xl col-md">
+<mat-card *ngFor="let sensor of sensors; index as i" style="margin: 5px"  >
+  <mat-progress-bar *ngIf="spinner[i] == true" mode="query"></mat-progress-bar>
+  <mat-card-header class="container-fluid" >
+    <h3 style="margin-top: 8px" class="col-xl-11">{{sensor.name}}</h3>  <button mat-icon-button color="warn" (click)="deleteSensor(sensor.name,sensor.id)"><mat-icon class="col-xl-1">cancel</mat-icon></button>
+  </mat-card-header>
+  <img width="312" height="312" mat-card-image src="{{sensor.link}}" >
+  <div style="text-align: center">
+  <mat-slide-toggle  [(ngModel)]="ledModel[i]" (click)="publish(sensor.topic,sensor.msgOn,sensor.msgOff, i)">
+    {{ledModel[i]?'Opened':'Closed'}}</mat-slide-toggle></div>
 </mat-card>
+  </div>
+    <div class="row">
+<mat-card style="margin: 5px" class="col-xl col-md">
+  <mat-card-header><h3>Data monitoring</h3></mat-card-header>
+  <img width="312" height="312" mat-card-image src="https://image.flaticon.com/icons/svg/888/888000.svg" alt="">
+  <button style="width: 100%" routerLink="/reports/{{id}}" mat-raised-button color="primary" >Monitoring</button>
+</mat-card>
+  </div>
+  </div>
+</div>
+
+
+<button  mat-fab (click)="createSensor()" *ngIf="authService.isAdmin"  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
+  <mat-icon>add</mat-icon>
+</button>
+
+

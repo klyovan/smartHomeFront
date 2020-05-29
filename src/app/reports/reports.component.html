@@ -1,24 +1,45 @@
-<h3>Humidity </h3>
-<div>
-  <div style="display: block">
-    <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-    </canvas>
-  </div>
+<button mat-icon-button color="primary" id="fixedbutton"   (click)="backClicked()" ><mat-icon>arrow_back</mat-icon></button>
+<div *ngIf="temperature.length != 0 || humidity.length != 0; else loader ">
+  <mat-tab-group  class="container">
+    <mat-tab label="Temperature">
+      <!--<div class="col">-->
+
+        <h3>Temperature</h3>
+        <div style="display: block" >
+          <canvas baseChart
+                  [datasets]="tempLineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+      <!--</div>-->
+    </mat-tab>
+    <mat-tab label="Humidity">
+      <!--<div class="col">-->
+        <h3>Humidity </h3>
+        <div style="display: block;">
+          <canvas baseChart
+                  [datasets]="humLineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+      <!--</div>-->
+    </mat-tab>
+  </mat-tab-group>
+
+
 </div>
-<h3>Temperature</h3>
-<div>
-  <div style="display: block">
-    <canvas baseChart
-            [datasets]="barChartData1"
-            [labels]="barChartLabels1"
-            [options]="barChartOptions"
-            [legend]="barChartLegend1"
-            [chartType]="barChartType1">
-    </canvas>
-  </div>
-</div>
+
+<ng-template #loader>
+  <mat-spinner style="margin:0 auto;"
+               mode="indeterminate"></mat-spinner>
+</ng-template>

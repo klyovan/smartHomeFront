@@ -1,0 +1,147 @@
+
+<!--<p>What's your favorite animal?</p>-->
+<!--<mat-form-field>-->
+<!--<mat-label>Favorite Animal</mat-label>-->
+<!--<input matInput [(ngModel)]="data.animal">-->
+<!--</mat-form-field>-->
+
+
+<div *ngIf="data.action == 'create'">
+  <h1 mat-dialog-title style="text-align: center">Room creation</h1>
+  <hr>
+  <div mat-dialog-content>
+
+    <!--<mat-card  >-->
+    <!--<mat-progress-bar *ngIf="spinner" mode="query"></mat-progress-bar>-->
+    <!--<form  (ngSubmit)="onSubmit()">-->
+    <mat-form-field  style="width: 100%" class="form-group">
+      <mat-label>Sensor name</mat-label>
+      <input matInput
+             [errorStateMatcher]="matcher"
+             id="name"
+             value=""
+             type="text"
+             class="form-control"
+             name="name"
+             [(ngModel)]="sensor.name"
+             [formControl] = "nameControl"
+             required>
+      <mat-error *ngIf="nameControl.hasError('required')">
+        <span>Name is <strong>required</strong></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%" class="form-group">
+      <mat-label>URL link for image</mat-label>
+      <input  matInput
+              [errorStateMatcher]="matcher"
+              id="link"
+              type="url"
+              class="form-control"
+              name="link"
+              [(ngModel)]="sensor.link"
+      >
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%" class="form-group">
+      <mat-label>MQTT Topic</mat-label>
+      <input  matInput
+              [errorStateMatcher]="matcher"
+              id="topic"
+              type="url"
+              class="form-control"
+              name="topic"
+              [(ngModel)]="sensor.topic"
+              [formControl] = "mqttControl"
+
+      >
+      <mat-hint>enter valid mqtt topic</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field  class="form-group">
+      <mat-label>ON</mat-label>
+      <input  matInput
+              [errorStateMatcher]="matcher"
+              id="msgon"
+              type="url"
+              class="form-control"
+              name="topic"
+              [(ngModel)]="sensor.msgOn"
+      >
+    </mat-form-field>
+
+    <mat-form-field style="margin-left: 2px" class="form-group">
+      <mat-label>OFF</mat-label>
+      <input  matInput
+              [errorStateMatcher]="matcher"
+              id="msgoff"
+              type="url"
+              class="form-control"
+              name="topic"
+              [(ngModel)]="sensor.msgOff"
+      >
+    </mat-form-field>
+    <!--</form>-->
+    <!--</mat-card>-->
+  </div>
+
+  <div class="row justify-content-end" mat-dialog-actions>
+    <button mat-button color="warn" (click)="onNoClick()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button mat-icon-button (click)="createSensor()" color="primary" cdkFocusInitial>
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</div>
+
+<!--<div *ngIf="data.action == 'update'">-->
+  <!--<h1 mat-dialog-title>Room creation</h1>-->
+  <!--<div mat-dialog-content>-->
+
+    <!--&lt;!&ndash;<mat-card  >&ndash;&gt;-->
+    <!--<mat-progress-bar *ngIf="spinner" mode="query"></mat-progress-bar>-->
+    <!--<form  (ngSubmit)="onSubmit()">-->
+      <!--<mat-form-field style="width: 75%" class="form-group">-->
+        <!--<mat-label>Room name</mat-label>-->
+        <!--<input matInput-->
+               <!--[errorStateMatcher]="matcher"-->
+               <!--id="updusername"-->
+               <!--value=""-->
+               <!--type="text"-->
+               <!--class="form-control"-->
+               <!--name="username"-->
+               <!--[(ngModel)]="form.name"-->
+               <!--required>-->
+        <!--&lt;!&ndash;<mat-error *ngIf="nameControl.hasError('required')">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span>Name is <strong>required</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+      <!--</mat-form-field>-->
+
+      <!--<mat-form-field style="width: 75%" class="form-group">-->
+        <!--<mat-label>URL link for image</mat-label>-->
+        <!--<input  matInput-->
+                <!--[errorStateMatcher]="matcher"-->
+                <!--id="updlink"-->
+                <!--type="text"-->
+                <!--class="form-control"-->
+                <!--name="link"-->
+                <!--[(ngModel)]="form.link"-->
+                <!--required>-->
+        <!--&lt;!&ndash;<mat-error *ngIf="linkControl.hasError('required')">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span>Password is <strong>required</strong></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+      <!--</mat-form-field>-->
+    <!--</form>-->
+    <!--&lt;!&ndash;</mat-card>&ndash;&gt;-->
+  <!--</div>-->
+
+  <!--<div class="row justify-content-end" mat-dialog-actions>-->
+    <!--<button mat-button color="warn" (click)="onNoClick()">-->
+      <!--<mat-icon>cancel</mat-icon>-->
+    <!--</button>-->
+    <!--<button mat-icon-button color="primary" cdkFocusInitial>-->
+      <!--<mat-icon>save</mat-icon>-->
+    <!--</button>-->
+  <!--</div>-->
+<!--</div>-->
