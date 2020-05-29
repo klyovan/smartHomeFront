@@ -3,9 +3,9 @@
   <mat-toolbar  color="primary" class="app-header container-fluid">
 
     <a  routerLink="home"  class="positronx  col-sm-6 col-xl-10 col-md-10">HomeX</a>
-    <span *ngIf="authService.isLogged || isLoggedIn; else noLogin"   class="nav-tool-items col-xl-2 col-sm-6 col-md-2">
+    <span *ngIf="isUserLoggedIn || isLoggedIn; else noLogin"   class="nav-tool-items col-xl-2 col-sm-6 col-md-2">
       <a mat-button (click)="logout()"  routerLinkActive="active">Log out <mat-icon>input</mat-icon></a>
-          <a *ngIf="authService.isAdmin" mat-button mat-raised-button routerLink="register" style="color: black" routerLinkActive="active">Register</a>
+          <a *ngIf="isAdmin" mat-button mat-raised-button routerLink="register" style="color: black" routerLinkActive="active">Register</a>
     </span>
     <ng-template #noLogin>
     <span    class="nav-tool-items  col-sm-6 col-xl-2 col-md-2">

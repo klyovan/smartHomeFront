@@ -24,9 +24,12 @@ export interface DialogData {
 export class RoomComponent implements OnInit {
   rooms: Array<Room>;
   action: string;
+  isAdmin: boolean;
+
 
   constructor(private _location: Location, private route: ActivatedRoute, private roomService: RoomService,
               public dialog: MatDialog, private authService: AuthService) {
+    this.isAdmin = this.authService.isAdmin;
     this.roomService.getRooms().subscribe((value: any) => {
       console.log('nacahl');
       this.rooms = value;

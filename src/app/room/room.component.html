@@ -12,7 +12,7 @@
       </div>
     </mat-card>
   </div>
-  <button *ngIf="authService.isAdmin"  mat-fab (click)=createRoom()  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
+  <button *ngIf="isAdmin"  mat-fab (click)=createRoom()  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
     <mat-icon>add</mat-icon>
   </button>
 </div>

@@ -21,11 +21,16 @@ export class ControlPanelComponent implements OnInit {
   spinner = [];
   id: number;
   sensors: Array<Sensor>;
+  isLoggedIn: boolean;
+  isAdmin: boolean;
+
 
 
   constructor(private mqttService: MqttService, private _location: Location,
               private route: ActivatedRoute, private sensorService: SensorService, roomService: RoomService,
               public dialog: MatDialog, private authService: AuthService) {
+    this.isLoggedIn = authService.isLogged;
+    this.isAdmin = this.authService.isAdmin;
     route.params.subscribe(value => {
       this.id = +value.id;
       sensorService.getSensors(this.id).subscribe((sensors: any) => {

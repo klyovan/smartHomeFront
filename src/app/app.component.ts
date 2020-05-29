@@ -22,10 +22,14 @@ export class AppComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+  isAdmin: boolean;
+  isUserLoggedIn: boolean;
 
 
 
   constructor(private tokenStorageService: TokenStorageService, private route: ActivatedRoute, private authService: AuthService) {
+    this.isAdmin = authService.isAdmin;
+    this.isUserLoggedIn = authService.isLogged;
   }
 
   ngOnInit() {

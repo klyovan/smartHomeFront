@@ -2,7 +2,7 @@
 
 <div  class="container">
   <div class="row">
-  <div *ngIf="sensors != null; else addSensor" class="col-xl col-md">
+  <div class="col-xl col-md">
 <mat-card *ngFor="let sensor of sensors; index as i" style="margin: 5px"  >
   <mat-progress-bar *ngIf="spinner[i] == true" mode="query"></mat-progress-bar>
   <mat-card-header class="container-fluid" >
@@ -25,7 +25,7 @@
 </div>
 
 
-<button  mat-fab (click)="createSensor()" *ngIf="authService.isAdmin"  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
+<button  mat-fab (click)="createSensor()" *ngIf="isAdmin"  style="position: fixed; right: 30px; bottom: 15px;" aria-label="Add a category">
   <mat-icon>add</mat-icon>
 </button>
 
