@@ -34,7 +34,6 @@ import { RoomComponent } from './room/room.component';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { SensorFormComponent } from './sensor-form/sensor-form.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
-import { GuardComponent } from './guard/guard.component';
 
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
@@ -57,7 +56,6 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     RoomFormComponent,
     SensorFormComponent,
     ConfirmDeleteComponent,
-    GuardComponent
   ],
   imports: [
     BrowserModule,
