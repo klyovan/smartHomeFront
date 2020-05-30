@@ -40,7 +40,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'broker.mqttdashboard.com',
   // process.env.BROKER_HOSTNAME,
   port: 8000,
-  path: '/mqtt'
+  path: '/mqtt',
+  protocol: 'wss'
 };
 
 
