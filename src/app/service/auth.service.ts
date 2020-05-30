@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TokenStorageService} from './token-storage.service';
-import {URL_BACK} from '../app.component';
+// import {URL_BACK} from '../app.component';
 
+const URL_BACK = 'https://housex.herokuapp.com/';
 const AUTH_API = URL_BACK + 'api/auth/';
 
 const httpOptions = {

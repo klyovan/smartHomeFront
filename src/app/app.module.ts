@@ -37,7 +37,8 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
 
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
-  hostname: process.env.BROKER_HOSTNAME,
+  hostname: 'broker.mqttdashboard.com',
+  // process.env.BROKER_HOSTNAME,
   port: 8000,
   path: '/mqtt'
 };

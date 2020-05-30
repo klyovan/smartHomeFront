@@ -5,7 +5,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from './service/auth.service';
 
-export const URL_BACK = 'https://housex.herokuapp.com/';
+// export const URL_BACK = 'https://housex.herokuapp.com/';
 
 
 @Component({

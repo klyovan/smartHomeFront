@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Room} from '../core/model/room.model';
 import {Observable} from 'rxjs';
-import {URL_BACK} from '../app.component';
+// import {URL_BACK} from '../app.component';
 
+const URL_BACK = 'https://housex.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'
